@@ -1,10 +1,10 @@
 "use client";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense, useEffect } from "react";
 import toast from "react-hot-toast";
 
-const VerifyPage = () => {
+const VerifyPageContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -34,5 +34,11 @@ const VerifyPage = () => {
     </div>
   );
 };
+
+const VerifyPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <VerifyPageContent />
+  </Suspense>
+);
 
 export default VerifyPage;
